@@ -1,0 +1,81 @@
+{
+  "featured_trick": {
+    "title": "The Vanishing Coin",
+    "thumbnail": "placeholder_trick"
+  },
+  "categories": [
+    {
+      "id": "card_tricks",
+      "name": "Card Tricks",
+      "icon": "ic_category_placeholder"
+    },
+    {
+      "id": "coin_magic",
+      "name": "Coin Magic",
+      "icon": "ic_category_placeholder"
+    },
+    {
+      "id": "mind_reading",
+      "name": "Mind Reading",
+      "icon": "ic_category_placeholder"
+    },
+    {
+      "id": "street_magic",
+      "name": "Street Magic",
+      "icon": "ic_category_placeholder"
+    },
+    {
+      "id": "beginners",
+      "name": "For Beginners",
+      "icon": "ic_category_placeholder"
+    }
+  ],
+  "trending_tricks": [
+    {
+      "id": "trick1",
+      "title": "Amazing Card Illusion",
+      "difficulty": "★★★"
+    },
+    {
+      "id": "trick2",
+      "title": "Coin Vanish",
+      "difficulty": "★★"
+    },
+    {
+      "id": "trick3",
+      "title": "Mind Reading Mastery",
+      "difficulty": "★★★★"
+    }
+  ],
+  "daily_challenge": {
+    "description": "Perform 3 Card Forces in a Row",
+    "progress": 50,
+    "reward": "Master Illusionist"
+  },
+  "community_highlights": {
+    "magicians_near_you": [
+      {
+        "id": "magician1",
+        "name": "John Doe",
+        "location": "New York"
+      },
+      {
+        "id": "magician2",
+        "name": "Jane Smith",
+        "location": "Los Angeles"
+      }
+    ],
+    "user_uploads": [
+      {
+        "id": "upload1",
+        "title": "Incredible Card Trick",
+        "user": "MagicFan123"
+      },
+      {
+        "id": "upload2",
+        "title": "Coin Magic Tutorial",
+        "user": "CoinMaster"
+      }
+    ]
+  }
+} 

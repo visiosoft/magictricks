@@ -1,0 +1,54 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "title": "Card Force Mastery",
+      "description": "Learn the art of card forcing with this beginner-friendly tutorial",
+      "thumbnailUrl": "https://static3.depositphotos.com/1003326/174/i/450/depositphotos_1745520-stock-photo-playing-card-trick.jpg",
+      "videoUrl": "https://example.com/videos/card_force",
+      "duration": "10:30",
+      "difficulty": "Beginner",
+      "views": 12500
+    },
+    {
+      "id": "2",
+      "title": "Coin Vanish",
+      "description": "Make coins disappear with this classic magic technique",
+      "thumbnailUrl": "coin_vanish_thumb",
+      "videoUrl": "https://example.com/videos/coin_vanish",
+      "duration": "8:45",
+      "difficulty": "Intermediate",
+      "views": 8750
+    },
+    {
+      "id": "3",
+      "title": "Rope Magic Basics",
+      "description": "Essential rope magic techniques for beginners",
+      "thumbnailUrl": "rope_magic_thumb",
+      "videoUrl": "https://example.com/videos/rope_magic",
+      "duration": "15:20",
+      "difficulty": "Beginner",
+      "views": 15600
+    },
+    {
+      "id": "4",
+      "title": "Mentalism Secrets",
+      "description": "Learn the psychology behind mentalism tricks",
+      "thumbnailUrl": "mentalism_thumb",
+      "videoUrl": "https://example.com/videos/mentalism",
+      "duration": "20:15",
+      "difficulty": "Advanced",
+      "views": 9800
+    },
+    {
+      "id": "5",
+      "title": "Close-up Magic",
+      "description": "Intimate magic tricks for small audiences",
+      "thumbnailUrl": "close_up_thumb",
+      "videoUrl": "https://example.com/videos/close_up",
+      "duration": "12:45",
+      "difficulty": "Intermediate",
+      "views": 11200
+    }
+  ]
+} 

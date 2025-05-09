@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Card Magic",
+      "icon": "ic_cards"
+    },
+    {
+      "id": "2",
+      "name": "Coin Magic",
+      "icon": "ic_coins"
+    },
+    {
+      "id": "3",
+      "name": "Mentalism",
+      "icon": "ic_mind"
+    },
+    {
+      "id": "4",
+      "name": "Close-up",
+      "icon": "ic_close_up"
+    },
+    {
+      "id": "5",
+      "name": "Stage Magic",
+      "icon": "ic_stage"
+    },
+    {
+      "id": "6",
+      "name": "Street Magic",
+      "icon": "ic_street"
+    }
+  ]
+} 

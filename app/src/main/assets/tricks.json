@@ -1,0 +1,54 @@
+{
+  "tricks": [
+    {
+      "id": "1",
+      "title": "Ambitious Card Routine",
+      "description": "A classic card trick where a selected card keeps rising to the top of the deck",
+      "thumbnailUrl": "placeholder_trick",
+      "videoUrl": "https://example.com/videos/ambitious_card",
+      "difficulty": "Intermediate",
+      "views": 15000,
+      "category": "Card Magic"
+    },
+    {
+      "id": "2",
+      "title": "Coins Across",
+      "description": "Make coins magically travel from one hand to another",
+      "thumbnailUrl": "placeholder_trick",
+      "videoUrl": "https://example.com/videos/coins_across",
+      "difficulty": "Advanced",
+      "views": 12000,
+      "category": "Coin Magic"
+    },
+    {
+      "id": "3",
+      "title": "Mind Reading with Cards",
+      "description": "Predict a spectator's chosen card through mentalism",
+      "thumbnailUrl": "placeholder_trick",
+      "videoUrl": "https://example.com/videos/mind_reading",
+      "difficulty": "Beginner",
+      "views": 20000,
+      "category": "Mentalism"
+    },
+    {
+      "id": "4",
+      "title": "Ring and String",
+      "description": "A ring mysteriously penetrates a string",
+      "thumbnailUrl": "placeholder_trick",
+      "videoUrl": "https://example.com/videos/ring_string",
+      "difficulty": "Intermediate",
+      "views": 18000,
+      "category": "Close-up"
+    },
+    {
+      "id": "5",
+      "title": "Sawing in Half",
+      "description": "The classic stage illusion of sawing a person in half",
+      "thumbnailUrl": "placeholder_trick",
+      "videoUrl": "https://example.com/videos/sawing_half",
+      "difficulty": "Advanced",
+      "views": 25000,
+      "category": "Stage Magic"
+    }
+  ]
+} 
