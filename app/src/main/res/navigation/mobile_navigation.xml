@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/navigation_videos"
+        android:name="upworksolutions.themagictricks.ui.dashboard.VideoListFragment"
+        android:label="@string/title_videos"
+        tools:layout="@layout/fragment_video_list" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="upworksolutions.themagictricks.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
