@@ -1,6 +1,8 @@
 package upworksolutions.themagictricks.model;
 
-public class YouTubeVideo {
+import java.io.Serializable;
+
+public class YouTubeVideo implements Serializable {
     private String id;
     private String title;
     private String description;

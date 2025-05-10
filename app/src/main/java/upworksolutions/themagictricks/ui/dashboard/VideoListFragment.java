@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -94,7 +95,9 @@ public class VideoListFragment extends Fragment implements YouTubeVideoAdapter.O
 
     @Override
     public void onVideoClick(YouTubeVideo video) {
-        // Handle video click - you can implement this based on your needs
-        // For example, open the video in YouTube app or play it in your app
+        Bundle args = new Bundle();
+        args.putSerializable("video", video);
+        Navigation.findNavController(requireView())
+                .navigate(R.id.action_videos_to_player, args);
     }
 } 
