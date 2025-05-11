@@ -31,27 +31,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import upworksolutions.themagictricks.R;
-import upworksolutions.themagictricks.adapter.YouTubeVideoAdapter;
-import upworksolutions.themagictricks.model.YouTubeVideo;
+import upworksolutions.themagictricks.adapter.VideoAdapter;
+import upworksolutions.themagictricks.model.VideoItem;
 
-public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter.OnVideoClickListener {
+public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVideoClickListener {
     private YouTubePlayerView youTubePlayerView;
     private TextView videoTitleTextView;
     private TextView videoDescriptionTextView;
     private RecyclerView videosRecyclerView;
-    private YouTubeVideoAdapter videosAdapter;
+    private VideoAdapter videosAdapter;
     private ImageButton whatsappShareButton;
     private ImageButton facebookShareButton;
     private ImageButton twitterShareButton;
-    private YouTubeVideo video;
-    private List<YouTubeVideo> allVideos;
+    private VideoItem video;
+    private List<VideoItem> allVideos;
     private static final String APP_LINK = "https://play.google.com/store/apps/details?id=upworksolutions.themagictricks";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            video = (YouTubeVideo) getArguments().getSerializable("video");
+            video = getArguments().getParcelable("video");
         }
         loadAllVideos();
     }
@@ -91,7 +91,7 @@ public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter
     }
 
     private void setupVideosList() {
-        videosAdapter = new YouTubeVideoAdapter(requireContext(), new ArrayList<>(), false, this);
+        videosAdapter = new VideoAdapter(new ArrayList<>(), this);
         videosRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         videosRecyclerView.setAdapter(videosAdapter);
         updateVideosList();
@@ -123,9 +123,7 @@ public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter
             intent.putExtra(Intent.EXTRA_TEXT, "Check out this amazing magic tricks app: " + APP_LINK);
             startActivity(intent);
         } catch (Exception e) {
-            // If Facebook app is not installed, open in browser
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/sharer/sharer.php?u=" + APP_LINK));
-            startActivity(browserIntent);
+            Toast.makeText(requireContext(), "Facebook is not installed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -137,9 +135,7 @@ public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter
             intent.putExtra(Intent.EXTRA_TEXT, "Check out this amazing magic tricks app: " + APP_LINK);
             startActivity(intent);
         } catch (Exception e) {
-            // If Twitter app is not installed, open in browser
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/intent/tweet?text=Check out this amazing magic tricks app: " + APP_LINK));
-            startActivity(browserIntent);
+            Toast.makeText(requireContext(), "Twitter is not installed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -160,7 +156,7 @@ public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter
             String json = new String(buffer, "UTF-8");
 
             Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<YouTubeVideo>>(){}.getType();
+            Type listType = new TypeToken<ArrayList<VideoItem>>(){}.getType();
             JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
             allVideos = gson.fromJson(jsonObject.get("videos"), listType);
         } catch (IOException e) {
@@ -176,7 +172,7 @@ public class VideoPlayerFragment extends Fragment implements YouTubeVideoAdapter
     }
 
     @Override
-    public void onVideoClick(YouTubeVideo video) {
+    public void onVideoClick(VideoItem video) {
         this.video = video;
         updateVideoInfo();
         youTubePlayerView.getYouTubePlayerWhenReady(player -> {

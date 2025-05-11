@@ -15,10 +15,7 @@ public class TestVideos {
             "Ambitious Card Routine",
             "Learn the classic ambitious card routine with a modern twist",
             "https://static3.depositphotos.com/1003326/174/i/450/depositphotos_1745520-stock-photo-playing-card-trick.jpg",
-            "https://example.com/videos/ambitious_card.mp4",
-            "5:30",
-            "Intermediate",
-            15000
+            "card_tricks"
         ));
 
         videos.add(new VideoItem(
@@ -26,10 +23,7 @@ public class TestVideos {
             "Coins Across",
             "Master the classic coins across effect",
             "https://example.com/thumbnails/coins_across.jpg",
-            "https://example.com/videos/coins_across.mp4",
-            "8:15",
-            "Advanced",
-            12000
+            "coin_tricks"
         ));
 
         videos.add(new VideoItem(
@@ -37,10 +31,7 @@ public class TestVideos {
             "Mind Reading with Cards",
             "Learn to read minds using a deck of cards",
             "https://example.com/thumbnails/mind_reading.jpg",
-            "https://example.com/videos/mind_reading.mp4",
-            "6:45",
-            "Beginner",
-            20000
+            "mind_reading"
         ));
 
         videos.add(new VideoItem(
@@ -48,10 +39,7 @@ public class TestVideos {
             "Ring and String",
             "Classic ring and string routine with modern handling",
             "https://example.com/thumbnails/ring_string.jpg",
-            "https://example.com/videos/ring_string.mp4",
-            "7:20",
-            "Intermediate",
-            18000
+            "rope_tricks"
         ));
 
         videos.add(new VideoItem(
@@ -59,10 +47,7 @@ public class TestVideos {
             "Sawing in Half",
             "Learn the classic sawing in half illusion",
             "https://example.com/thumbnails/sawing_half.jpg",
-            "https://example.com/videos/sawing_half.mp4",
-            "10:15",
-            "Advanced",
-            25000
+            "stage_magic"
         ));
 
         return videos;

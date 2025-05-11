@@ -10,12 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import upworksolutions.themagictricks.R;
 import upworksolutions.themagictricks.adapter.CategoryAdapter;
@@ -56,6 +58,21 @@ public class HomeFragment extends Fragment implements
         setupRecyclerViews();
         observeViewModel();
         homeViewModel.loadData(requireContext());
+        
+        // Set up Watch Now button click listener
+        binding.learnNowButton.setText("Watch Now");
+        binding.learnNowButton.setOnClickListener(v -> {
+            // Get the first video from the list
+            List<VideoItem> videos = homeViewModel.getVideos().getValue();
+            if (videos != null && !videos.isEmpty()) {
+                VideoItem video = videos.get(0);
+                // Navigate to video player
+                Bundle args = new Bundle();
+                args.putParcelable("video", video);
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_home_to_video_player, args);
+            }
+        });
     }
 
     private void setupRecyclerViews() {

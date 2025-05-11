@@ -45,8 +45,43 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void loadData(Context context) {
-        // Load test videos
-        videos.setValue(TestVideos.getTestVideos());
+        try {
+            // Load YouTube videos
+            InputStream is = context.getAssets().open("youtube_videos.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, StandardCharsets.UTF_8);
+            
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray videosArray = jsonObject.getJSONArray("videos");
+            List<VideoItem> videoList = new ArrayList<>();
+            
+            for (int i = 0; i < videosArray.length(); i++) {
+                JSONObject videoObj = videosArray.getJSONObject(i);
+                VideoItem video = new VideoItem(
+                    videoObj.getString("id"),
+                    videoObj.getString("title"),
+                    videoObj.getString("description"),
+                    videoObj.getString("thumbnail"),
+                    videoObj.getString("category")
+                );
+                videoList.add(video);
+            }
+            
+            videos.setValue(videoList);
+            
+            // Set the first video as the featured video
+            if (!videoList.isEmpty()) {
+                VideoItem featuredVideo = videoList.get(0);
+                dailyTrickTitle.setValue(featuredVideo.getTitle());
+                dailyTrickImageUrl.setValue(featuredVideo.getThumbnail());
+            }
+            
+        } catch (IOException | JSONException e) {
+            Log.e("HomeViewModel", "Error loading data", e);
+        }
         
         // Load other data from JSON
         loadCategoriesFromJson(context);

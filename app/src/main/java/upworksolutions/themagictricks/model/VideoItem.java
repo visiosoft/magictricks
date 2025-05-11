@@ -1,26 +1,42 @@
 package upworksolutions.themagictricks.model;
 
-public class VideoItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class VideoItem implements Parcelable {
     private String id;
     private String title;
     private String description;
-    private String thumbnailUrl;
-    private String videoUrl;
-    private String duration;
-    private String difficulty;
-    private int views;
+    private String thumbnail;
+    private String category;
 
-    public VideoItem(String id, String title, String description, String thumbnailUrl, 
-                    String videoUrl, String duration, String difficulty, int views) {
+    public VideoItem(String id, String title, String description, String thumbnail, String category) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.thumbnailUrl = thumbnailUrl;
-        this.videoUrl = videoUrl;
-        this.duration = duration;
-        this.difficulty = difficulty;
-        this.views = views;
+        this.thumbnail = thumbnail;
+        this.category = category;
     }
+
+    protected VideoItem(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        description = in.readString();
+        thumbnail = in.readString();
+        category = in.readString();
+    }
+
+    public static final Creator<VideoItem> CREATOR = new Creator<VideoItem>() {
+        @Override
+        public VideoItem createFromParcel(Parcel in) {
+            return new VideoItem(in);
+        }
+
+        @Override
+        public VideoItem[] newArray(int size) {
+            return new VideoItem[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -34,23 +50,25 @@ public class VideoItem {
         return description;
     }
 
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
+    public String getCategory() {
+        return category;
     }
 
-    public String getDuration() {
-        return duration;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public int getViews() {
-        return views;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(thumbnail);
+        dest.writeString(category);
     }
 } 
