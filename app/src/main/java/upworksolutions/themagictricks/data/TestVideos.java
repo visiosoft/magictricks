@@ -15,7 +15,7 @@ public class TestVideos {
             "Ambitious Card Routine",
             "Learn the classic ambitious card routine with a modern twist",
             "https://static3.depositphotos.com/1003326/174/i/450/depositphotos_1745520-stock-photo-playing-card-trick.jpg",
-            "card_tricks"
+            1
         ));
 
         videos.add(new VideoItem(
@@ -23,7 +23,7 @@ public class TestVideos {
             "Coins Across",
             "Master the classic coins across effect",
             "https://example.com/thumbnails/coins_across.jpg",
-            "coin_tricks"
+            2
         ));
 
         videos.add(new VideoItem(
@@ -31,7 +31,7 @@ public class TestVideos {
             "Mind Reading with Cards",
             "Learn to read minds using a deck of cards",
             "https://example.com/thumbnails/mind_reading.jpg",
-            "mind_reading"
+            2
         ));
 
         videos.add(new VideoItem(
@@ -39,7 +39,7 @@ public class TestVideos {
             "Ring and String",
             "Classic ring and string routine with modern handling",
             "https://example.com/thumbnails/ring_string.jpg",
-            "rope_tricks"
+            2
         ));
 
         videos.add(new VideoItem(
@@ -47,7 +47,7 @@ public class TestVideos {
             "Sawing in Half",
             "Learn the classic sawing in half illusion",
             "https://example.com/thumbnails/sawing_half.jpg",
-            "stage_magic"
+            3
         ));
 
         return videos;

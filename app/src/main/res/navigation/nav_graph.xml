@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="upworksolutions.themagictricks.ui.home.HomeFragment"
+        android:label="Home">
+        <action
+            android:id="@+id/action_homeFragment_to_categoryVideosFragment"
+            app:destination="@id/categoryVideosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryVideosFragment"
+        android:name="upworksolutions.themagictricks.ui.CategoryVideosFragment"
+        android:label="Category Videos">
+        <argument
+            android:name="category_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_categoryVideosFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="upworksolutions.themagictricks.ui.dashboard.VideoPlayerFragment"
+        android:label="Video Player">
+        <argument
+            android:name="video"
+            app:argType="upworksolutions.themagictricks.model.VideoItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="upworksolutions.themagictricks.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_videos"
+        android:name="upworksolutions.themagictricks.ui.dashboard.VideoListFragment"
+        android:label="@string/title_videos" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="upworksolutions.themagictricks.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications" />
+
+</navigation> 

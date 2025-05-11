@@ -1,6 +1,7 @@
 package upworksolutions.themagictricks.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -15,6 +16,8 @@ import java.util.List;
 import upworksolutions.themagictricks.model.MagicCategory;
 
 public class CategoryLoader {
+    private static final String TAG = "CategoryLoader";
+
     public static List<MagicCategory> loadCategories(Context context) {
         try {
             InputStream is = context.getAssets().open("magic_categories.json");
@@ -27,9 +30,16 @@ public class CategoryLoader {
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
             Type listType = new TypeToken<ArrayList<MagicCategory>>(){}.getType();
-            return gson.fromJson(jsonObject.get("categories"), listType);
+            List<MagicCategory> categories = gson.fromJson(jsonObject.get("categories"), listType);
+            
+            if (categories == null) {
+                Log.e(TAG, "Failed to parse categories from JSON");
+                return new ArrayList<>();
+            }
+            
+            return categories;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error loading categories from JSON", e);
             return new ArrayList<>();
         }
     }

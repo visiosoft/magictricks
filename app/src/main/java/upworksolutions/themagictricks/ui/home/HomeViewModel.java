@@ -65,7 +65,7 @@ public class HomeViewModel extends ViewModel {
                     videoObj.getString("title"),
                     videoObj.getString("description"),
                     videoObj.getString("thumbnail"),
-                    videoObj.getString("category")
+                    videoObj.getInt("categoryId")
                 );
                 videoList.add(video);
             }

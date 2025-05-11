@@ -130,8 +130,10 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void onCategoryClick(MagicCategory category) {
-        Toast.makeText(requireContext(), "Selected: " + category.getName(), Toast.LENGTH_SHORT).show();
-        // TODO: Navigate to category details or tricks list
+        Bundle args = new Bundle();
+        args.putInt("category_id", category.getId());
+        Navigation.findNavController(requireView())
+                .navigate(R.id.action_homeFragment_to_categoryVideosFragment, args);
     }
 
     @Override

@@ -8,14 +8,14 @@ public class VideoItem implements Parcelable {
     private String title;
     private String description;
     private String thumbnail;
-    private String category;
+    private int categoryId;
 
-    public VideoItem(String id, String title, String description, String thumbnail, String category) {
+    public VideoItem(String id, String title, String description, String thumbnail, int categoryId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnail = thumbnail;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 
     protected VideoItem(Parcel in) {
@@ -23,7 +23,7 @@ public class VideoItem implements Parcelable {
         title = in.readString();
         description = in.readString();
         thumbnail = in.readString();
-        category = in.readString();
+        categoryId = in.readInt();
     }
 
     public static final Creator<VideoItem> CREATOR = new Creator<VideoItem>() {
@@ -54,8 +54,8 @@ public class VideoItem implements Parcelable {
         return thumbnail;
     }
 
-    public String getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
     @Override
@@ -69,6 +69,6 @@ public class VideoItem implements Parcelable {
         dest.writeString(title);
         dest.writeString(description);
         dest.writeString(thumbnail);
-        dest.writeString(category);
+        dest.writeInt(categoryId);
     }
 } 
