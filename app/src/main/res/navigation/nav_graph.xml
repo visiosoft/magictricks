@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryVideosFragment"
             app:destination="@id/categoryVideosFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
     </fragment>
 
     <fragment

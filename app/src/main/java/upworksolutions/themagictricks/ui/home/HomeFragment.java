@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment implements
                 Bundle args = new Bundle();
                 args.putParcelable("video", video);
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_navigation_home_to_videoPlayerFragment, args);
+                    .navigate(R.id.action_homeFragment_to_videoPlayerFragment, args);
             }
         });
     }
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment implements
         Bundle args = new Bundle();
         args.putParcelable("video", video);
         Navigation.findNavController(requireView())
-            .navigate(R.id.action_navigation_home_to_videoPlayerFragment, args);
+            .navigate(R.id.action_homeFragment_to_videoPlayerFragment, args);
     }
 
     @Override
