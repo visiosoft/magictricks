@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +46,7 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
     private ImageButton whatsappShareButton;
     private ImageButton facebookShareButton;
     private ImageButton twitterShareButton;
+    private ProgressBar loadingIndicator;
     private VideoItem video;
     private List<VideoItem> allVideos;
     private static final String APP_LINK = "https://play.google.com/store/apps/details?id=upworksolutions.themagictricks";
@@ -68,6 +72,7 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
         whatsappShareButton = view.findViewById(R.id.whatsappShareButton);
         facebookShareButton = view.findViewById(R.id.facebookShareButton);
         twitterShareButton = view.findViewById(R.id.twitterShareButton);
+        loadingIndicator = view.findViewById(R.id.loadingIndicator);
         
         getLifecycle().addObserver(youTubePlayerView);
         
@@ -80,11 +85,20 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
     }
 
     private void setupVideoPlayer() {
+        showLoading();
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
                 if (video != null) {
                     youTubePlayer.loadVideo(video.getId(), 0);
+                    hideLoading();
+                }
+            }
+
+            @Override
+            public void onStateChange(YouTubePlayer youTubePlayer, com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState state) {
+                if (state == com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState.ENDED) {
+                    hideLoading();
                 }
             }
         });
@@ -171,12 +185,37 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
         }
     }
 
+    private void showLoading() {
+        loadingIndicator.setVisibility(View.VISIBLE);
+        Animation fadeIn = AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_in);
+        loadingIndicator.startAnimation(fadeIn);
+    }
+
+    private void hideLoading() {
+        Animation fadeOut = AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_out);
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                loadingIndicator.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        loadingIndicator.startAnimation(fadeOut);
+    }
+
     @Override
     public void onVideoClick(VideoItem video) {
         this.video = video;
         updateVideoInfo();
+        showLoading();
         youTubePlayerView.getYouTubePlayerWhenReady(player -> {
             player.loadVideo(video.getId(), 0);
+            hideLoading();
         });
     }
 

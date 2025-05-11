@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements
                 Bundle args = new Bundle();
                 args.putParcelable("video", video);
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_home_to_video_player, args);
+                    .navigate(R.id.action_navigation_home_to_videoPlayerFragment, args);
             }
         });
     }

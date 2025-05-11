@@ -11,15 +11,27 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_to_video_player"
-            app:destination="@id/navigation_video_player" />
+            android:id="@+id/action_navigation_home_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="upworksolutions.themagictricks.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_navigation_dashboard_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_videos"
@@ -46,4 +58,14 @@
         android:name="upworksolutions.themagictricks.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="upworksolutions.themagictricks.ui.dashboard.VideoPlayerFragment"
+        android:label="Video Player"
+        tools:layout="@layout/fragment_video_player">
+        <argument
+            android:name="video"
+            app:argType="upworksolutions.themagictricks.model.VideoItem" />
+    </fragment>
 </navigation>
