@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base text style -->
+    <style name="TextAppearance.Base" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Heading style -->
+    <style name="TextAppearance.Heading" parent="TextAppearance.Base">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <!-- Body text style -->
+    <style name="TextAppearance.Body" parent="TextAppearance.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <!-- Category button text style -->
+    <style name="TextAppearance.CategoryButton" parent="TextAppearance.Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+</resources> 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Card Outline (More visible stroke) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.2"
+        android:pathData="M18,3H6C4.34,3 3,4.34 3,6v12c0,1.66 1.34,3 3,3h12c1.66,0 3,-1.34 3,-3V6C21,4.34 19.66,3 18,3z"/>
+
+    <!-- Dynamic Card Symbol (Now a floating Ace of Spades) -->
+    <group>
+        <!-- Spade Base -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M12,10c0.55,0 1,0.45 1,1v2h1c0.55,0 1,0.45 1,1s-0.45,1-1,1h-4c-0.55,0-1-0.45-1-1s0.45-1 1-1h1v-2c0-0.55 0.45-1 1-1z"/>
+        <!-- Spade Top -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M12,7c-1.66,0-3,1.34-3,3s1.34,3 3,3 3-1.34 3-3S13.66,7 12,7z"/>
+    </group>
+
+    <!-- Magic Sparkles (3 dynamic elements) -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M8,5L9,6 10,5 9,4z"/> <!-- Gold star -->
+    <path
+        android:fillColor="#FF4081"
+        android:pathData="M17,8L18,10 19,8 18,7z"/> <!-- Pink star -->
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M5,14L6,16 7,14 6,13z"/> <!-- Cyan star -->
+</vector>

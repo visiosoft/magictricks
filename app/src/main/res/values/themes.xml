@@ -1,16 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MagicTricks" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/primary_light</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="21">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">@color/background_dark</item>
+        
+        <!-- Background colors -->
+        <item name="android:windowBackground">@drawable/mystical_gradient_background</item>
+        <item name="android:colorBackground">@color/background_dark</item>
+        
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        
+        <!-- Font family -->
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="fontFamily">sans-serif-light</item>
+        
+        <!-- Card style -->
+        <item name="materialCardViewStyle">@style/Widget.MagicTricks.CardView</item>
+        
+        <!-- Button style -->
+        <item name="materialButtonStyle">@style/Widget.MagicTricks.Button</item>
+        
+        <!-- Navigation bar color -->
+        <item name="android:navigationBarColor">@color/background_dark</item>
+    </style>
+
+    <style name="Widget.MagicTricks.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.MagicTricks.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
     </style>
 </resources>

@@ -1,0 +1,40 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Card Magic",
+      "description": "Tricks using playing cards",
+      "examples": ["Ambitious Card", "Triumph"]
+    },
+    {
+      "id": 2,
+      "name": "Coin Magic",
+      "description": "Tricks with coins",
+      "examples": ["French Drop", "Coin Matrix"]
+    },
+    {
+      "id": 3,
+      "name": "Rope Magic",
+      "description": "Tricks with ropes",
+      "examples": ["Cut & Restored Rope"]
+    },
+    {
+      "id": 4,
+      "name": "Street Magic",
+      "description": "A classic routine with cups and balls",
+      "examples": ["Classic Cups & Balls"]
+    },
+    {
+      "id": 5,
+      "name": "Mentalism & Mind-Reading",
+      "description": "Predicting thoughts or influencing choices",
+      "examples": ["Book Test", "Mental Prediction"]
+    },
+    {
+      "id": 6,
+      "name": "Illusions",
+      "description": "Large-scale tricks",
+      "examples": ["Zig-Zag Girl", "Vanishing Statue of Liberty"]
+    }
+  ]
+} 

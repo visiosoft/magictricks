@@ -4,7 +4,18 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!-- Wand Handle (Wooden) -->
     <path
-        android:fillColor="#FF000000"
-        android:pathData="M7.5,5.6L10,7 8.6,4.5 10,2 7.5,3.4 5,2l1.4,2.5L5,7zM22,9l-2.5,-1.4L17,9l1.4,2.5L17,14l2.5,-1.4L22,14l-1.4,-2.5zM14.5,15.4L13,14l1.4,-2.5L13,9l2.5,1.4L18,9l-1.4,2.5L18,14l-2.5,-1.4zM8,17l-1.4,2.5L5,17l2.5,1.4L5,21l1.4,-2.5L8,21l-1.4,-2.5L8,17z" />
-</vector> 
+        android:fillColor="#8B4513"
+    android:pathData="M14,4L10,4L10,20L14,20L14,4Z"/>
+
+    <!-- Star Tip (Gold) -->
+    <path
+        android:fillColor="#FFD700"
+    android:pathData="M14,2L16,6L20,7L17,10L18,14L14,12L10,14L11,10L8,7L12,6L14,2Z"/>
+
+    <!-- Sparkles (Optional) -->
+    <path
+        android:fillColor="#FFFFFF"
+    android:pathData="M4,4L6,4L6,6L4,6L4,4ZM18,18L20,18L20,20L18,20L18,18Z"/>
+</vector>

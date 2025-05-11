@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,24 +21,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import upworksolutions.themagictricks.R;
-import upworksolutions.themagictricks.adapter.CategoryAdapter;
+import upworksolutions.themagictricks.adapter.MagicCategoryAdapter;
 import upworksolutions.themagictricks.adapter.TrickAdapter;
 import upworksolutions.themagictricks.adapter.VideoAdapter;
 import upworksolutions.themagictricks.databinding.FragmentHomeBinding;
-import upworksolutions.themagictricks.model.Category;
+import upworksolutions.themagictricks.model.MagicCategory;
 import upworksolutions.themagictricks.model.Trick;
 import upworksolutions.themagictricks.model.VideoItem;
+import upworksolutions.themagictricks.utils.CategoryLoader;
 
 public class HomeFragment extends Fragment implements 
-    CategoryAdapter.OnCategoryClickListener,
     TrickAdapter.OnTrickClickListener,
-    VideoAdapter.OnVideoClickListener {
+    VideoAdapter.OnVideoClickListener,
+    MagicCategoryAdapter.OnCategoryClickListener {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CategoryAdapter categoryAdapter;
     private TrickAdapter trickAdapter;
     private VideoAdapter videoAdapter;
+    private MagicCategoryAdapter categoryAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,11 +78,11 @@ public class HomeFragment extends Fragment implements
     }
 
     private void setupRecyclerViews() {
-        // Setup Categories RecyclerView
-        binding.categoryRecyclerView.setLayoutManager(
-            new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter(new ArrayList<Category>(), this);
-        binding.categoryRecyclerView.setAdapter(categoryAdapter);
+        // Setup Categories RecyclerView with GridLayout
+        binding.categoriesRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        List<MagicCategory> categories = CategoryLoader.loadCategories(requireContext());
+        categoryAdapter = new MagicCategoryAdapter(categories, this);
+        binding.categoriesRecyclerView.setAdapter(categoryAdapter);
 
         // Setup Trending Tricks RecyclerView
         binding.trendingTricksRecycler.setLayoutManager(
@@ -96,35 +98,40 @@ public class HomeFragment extends Fragment implements
     }
 
     private void observeViewModel() {
-        homeViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
-            categoryAdapter.updateCategories(categories);
-        });
-
         homeViewModel.getTrendingTricks().observe(getViewLifecycleOwner(), tricks -> {
-            trickAdapter.updateTricks(tricks);
+            if (tricks != null) {
+                trickAdapter.updateTricks(tricks);
+            }
         });
 
         homeViewModel.getVideos().observe(getViewLifecycleOwner(), videos -> {
-            videoAdapter.updateVideos(videos);
+            if (videos != null) {
+                videoAdapter.updateVideos(videos);
+            }
         });
 
         homeViewModel.getDailyTrickTitle().observe(getViewLifecycleOwner(), title -> {
-            binding.featuredTrickTitle.setText(title);
+            if (title != null) {
+                binding.featuredTrickTitle.setText(title);
+            }
         });
 
         homeViewModel.getDailyTrickImageUrl().observe(getViewLifecycleOwner(), imageUrl -> {
-            Glide.with(this)
-                .load(imageUrl)
-                .placeholder(R.drawable.placeholder_trick)
-                .error(R.drawable.placeholder_trick)
-                .centerCrop()
-                .into(binding.featuredTrickThumbnail);
+            if (imageUrl != null) {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder_trick)
+                    .error(R.drawable.placeholder_trick)
+                    .centerCrop()
+                    .into(binding.featuredTrickThumbnail);
+            }
         });
     }
 
     @Override
-    public void onCategoryClick(Category category) {
-        Toast.makeText(requireContext(), "Selected category: " + category.getName(), Toast.LENGTH_SHORT).show();
+    public void onCategoryClick(MagicCategory category) {
+        Toast.makeText(requireContext(), "Selected: " + category.getName(), Toast.LENGTH_SHORT).show();
+        // TODO: Navigate to category details or tricks list
     }
 
     @Override
@@ -134,7 +141,11 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void onVideoClick(VideoItem video) {
-        Toast.makeText(requireContext(), "Selected video: " + video.getTitle(), Toast.LENGTH_SHORT).show();
+        // Navigate to video player with the selected video
+        Bundle args = new Bundle();
+        args.putParcelable("video", video);
+        Navigation.findNavController(requireView())
+            .navigate(R.id.action_navigation_home_to_videoPlayerFragment, args);
     }
 
     @Override
