@@ -3,5 +3,5 @@
     <font
         app:fontStyle="normal"
         app:fontWeight="700"
-        app:font="@font/montserrat" />
+        app:font="@font/opensans" />
 </font-family> 

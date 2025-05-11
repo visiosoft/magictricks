@@ -8,9 +8,9 @@
     <color name="teal_700">#FF018786</color>
     
     <!-- Playful Modern Magician Theme -->
-    <color name="primary">#6200EA</color>
-    <color name="primary_dark">#4A148C</color>
-    <color name="primary_light">#B388FF</color>
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#E64A19</color>
+    <color name="primary_light">#FFCCBC</color>
     <color name="accent">#FF4081</color>
     
     <color name="background_dark">#F5F5F5</color>
@@ -21,11 +21,21 @@
     <color name="text_hint">#9E9E9E</color>
     
     <color name="card_background">#FFFFFF</color>
-    <color name="divider">#E0E0E0</color>
+    <color name="divider">#BDBDBD</color>
     
     <color name="glow_light">#FF4081</color>
     <color name="glow_dark">#6200EA</color>
     
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+    <color name="error">#F44336</color>
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="info">#2196F3</color>
 </resources>

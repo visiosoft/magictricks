@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_videoPlayerFragment"
             app:destination="@id/videoPlayerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -48,8 +51,22 @@
         android:label="@string/title_videos" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="upworksolutions.themagictricks.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications" />
+        android:id="@+id/navigation_community"
+        android:name="upworksolutions.themagictricks.ui.community.CommunityFragment"
+        android:label="Community" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="upworksolutions.themagictricks.ui.settings.SettingsFragment"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="upworksolutions.themagictricks.ui.settings.PrivacyPolicyFragment"
+        android:label="Privacy Policy" />
 
 </navigation> 
