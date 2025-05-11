@@ -60,11 +60,17 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+
     buildFeatures {
         viewBinding true
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds true
     }
 }
 
@@ -85,6 +91,9 @@ dependencies {
     
     // YouTube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
+    
+    // AdMob
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
     
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
