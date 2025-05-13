@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home" />
 
@@ -12,7 +12,7 @@
         android:title="@string/title_videos" />
 
     <item
-        android:id="@+id/navigation_community"
+        android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_people"
         android:title="Community" />
 

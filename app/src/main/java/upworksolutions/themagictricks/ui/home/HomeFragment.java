@@ -119,11 +119,7 @@ public class HomeFragment extends Fragment implements
             List<VideoItem> videos = homeViewModel.getVideos().getValue();
             if (videos != null && !videos.isEmpty()) {
                 VideoItem video = videos.get(0);
-                // Navigate to video player
-                Bundle args = new Bundle();
-                args.putParcelable("video", video);
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_homeFragment_to_videoPlayerFragment, args);
+                navigateToVideoPlayer(video);
             }
         });
         loadBannerAd();
@@ -131,6 +127,12 @@ public class HomeFragment extends Fragment implements
     }
 
     private void setupRecyclerViews() {
+        // Setup videos recycler view
+        binding.videosRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), 
+            LinearLayoutManager.HORIZONTAL, false));
+        videoAdapter = new VideoAdapter(requireContext(), new ArrayList<>(), false, this);
+        binding.videosRecyclerView.setAdapter(videoAdapter);
+
         // Setup Categories RecyclerView with GridLayout
         binding.categoriesRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         List<MagicCategory> categories = CategoryLoader.loadCategories(requireContext());
@@ -142,12 +144,6 @@ public class HomeFragment extends Fragment implements
             new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
         trickAdapter = new TrickAdapter(new ArrayList<>(), this);
         binding.trendingTricksRecycler.setAdapter(trickAdapter);
-
-        // Setup Videos RecyclerView
-        binding.videosRecyclerView.setLayoutManager(
-            new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        videoAdapter = new VideoAdapter(new ArrayList<>(), this);
-        binding.videosRecyclerView.setAdapter(videoAdapter);
     }
 
     private void observeViewModel() {
@@ -354,7 +350,15 @@ public class HomeFragment extends Fragment implements
 
     private void navigateToVideoPlayer(VideoItem video) {
         Bundle args = new Bundle();
-        args.putParcelable("video", video);
+        args.putString("videoId", video.getId());
+        args.putString("videoTitle", video.getTitle());
+        args.putString("videoUrl", video.getVideoUrl());
+        args.putString("description", video.getDescription());
+        args.putString("thumbnail", video.getThumbnail());
+        args.putInt("categoryId", video.getCategoryId());
+        args.putString("categoryName", video.getCategoryName());
+        args.putLong("views", video.getViews());
+        args.putString("uploadDate", video.getUploadDate());
         Navigation.findNavController(requireView())
             .navigate(R.id.action_homeFragment_to_videoPlayerFragment, args);
     }

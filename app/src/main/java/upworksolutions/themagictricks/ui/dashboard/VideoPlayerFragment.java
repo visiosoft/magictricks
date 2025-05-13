@@ -1,8 +1,7 @@
 package upworksolutions.themagictricks.ui.dashboard;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +30,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import upworksolutions.themagictricks.R;
 import upworksolutions.themagictricks.adapter.VideoAdapter;
+import upworksolutions.themagictricks.model.Video;
 import upworksolutions.themagictricks.model.VideoItem;
 
 public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVideoClickListener {
+    private static final String TAG = "VideoPlayerFragment";
     private YouTubePlayerView youTubePlayerView;
     private TextView videoTitleTextView;
     private TextView videoDescriptionTextView;
@@ -50,14 +52,38 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
     private VideoItem video;
     private List<VideoItem> allVideos;
     private static final String APP_LINK = "https://play.google.com/store/apps/details?id=upworksolutions.themagictricks";
+    private static final int MAX_RANDOM_VIDEOS = 5;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            video = getArguments().getParcelable("video");
-        }
         loadAllVideos();
+        if (getArguments() != null) {
+            String videoId = getArguments().getString("videoId");
+            String videoTitle = getArguments().getString("videoTitle");
+            String videoUrl = getArguments().getString("videoUrl");
+            int categoryId = getArguments().getInt("categoryId", 0);
+            String categoryName = getArguments().getString("categoryName", "");
+            String description = getArguments().getString("description", "");
+            String thumbnail = getArguments().getString("thumbnail", "");
+            long views = getArguments().getLong("views", 0);
+            String uploadDate = getArguments().getString("uploadDate", "");
+
+            if (videoId != null && videoTitle != null && videoUrl != null) {
+                video = new VideoItem(
+                    videoId,
+                    videoTitle,
+                    description,
+                    thumbnail,
+                    videoUrl,
+                    categoryId,
+                    categoryName,
+                    views,
+                    uploadDate
+                );
+                Log.d(TAG, "Created video with category ID: " + categoryId);
+            }
+        }
     }
 
     @Nullable
@@ -96,7 +122,8 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
             }
 
             @Override
-            public void onStateChange(YouTubePlayer youTubePlayer, com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState state) {
+            public void onStateChange(YouTubePlayer youTubePlayer, 
+                com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState state) {
                 if (state == com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState.ENDED) {
                     hideLoading();
                 }
@@ -105,59 +132,9 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
     }
 
     private void setupVideosList() {
-        videosAdapter = new VideoAdapter(new ArrayList<>(), this);
         videosRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        videosAdapter = new VideoAdapter(requireContext(), new ArrayList<>(), false, this);
         videosRecyclerView.setAdapter(videosAdapter);
-        updateVideosList();
-    }
-
-    private void setupShareButtons() {
-        whatsappShareButton.setOnClickListener(v -> shareToWhatsApp());
-        facebookShareButton.setOnClickListener(v -> shareToFacebook());
-        twitterShareButton.setOnClickListener(v -> shareToTwitter());
-    }
-
-    private void shareToWhatsApp() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.setPackage("com.whatsapp");
-            intent.putExtra(Intent.EXTRA_TEXT, "Check out this amazing magic tricks app: " + APP_LINK);
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(requireContext(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void shareToFacebook() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.setPackage("com.facebook.katana");
-            intent.putExtra(Intent.EXTRA_TEXT, "Check out this amazing magic tricks app: " + APP_LINK);
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(requireContext(), "Facebook is not installed", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void shareToTwitter() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.setPackage("com.twitter.android");
-            intent.putExtra(Intent.EXTRA_TEXT, "Check out this amazing magic tricks app: " + APP_LINK);
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(requireContext(), "Twitter is not installed", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateVideoInfo() {
-        if (video != null) {
-            videoTitleTextView.setText(video.getTitle());
-            videoDescriptionTextView.setText(video.getDescription());
-        }
     }
 
     private void loadAllVideos() {
@@ -170,19 +147,89 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
             String json = new String(buffer, "UTF-8");
 
             Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<VideoItem>>(){}.getType();
             JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
-            allVideos = gson.fromJson(jsonObject.get("videos"), listType);
+            Type listType = new TypeToken<ArrayList<Video>>(){}.getType();
+            List<Video> videos = gson.fromJson(jsonObject.get("videos"), listType);
+
+            if (videos != null) {
+                allVideos = new ArrayList<>();
+                for (Video v : videos) {
+                    allVideos.add(new VideoItem(
+                        v.getId(),
+                        v.getTitle(),
+                        v.getDescription(),
+                        v.getThumbnailUrl(),
+                        v.getVideoUrl(),
+                        v.getCategoryId(),
+                        getCategoryName(v.getCategoryId()),
+                        v.getViews(),
+                        v.getUploadDate()
+                    ));
+                }
+                Log.d(TAG, "Loaded " + allVideos.size() + " videos");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
-            allVideos = new ArrayList<>();
+            Log.e(TAG, "Error loading videos", e);
         }
     }
 
-    private void updateVideosList() {
-        if (allVideos != null) {
-            videosAdapter.updateVideos(allVideos);
+    private String getCategoryName(int categoryId) {
+        switch (categoryId) {
+            case 1:
+                return "Card Magic";
+            case 2:
+                return "Coin Magic";
+            case 3:
+                return "Rope Magic";
+            case 4:
+                return "Mentalism";
+            case 5:
+                return "Street Magic";
+            default:
+                return "Other";
         }
+    }
+
+    private void updateVideoInfo() {
+        if (video != null) {
+            videoTitleTextView.setText(video.getTitle());
+            videoDescriptionTextView.setText(video.getDescription());
+            
+            // Update related videos
+            List<VideoItem> randomVideos = getRandomVideos();
+            Log.d(TAG, "Selected " + randomVideos.size() + " random videos");
+            videosAdapter.updateVideos(randomVideos);
+        }
+    }
+
+    private List<VideoItem> getRandomVideos() {
+        List<VideoItem> randomVideos = new ArrayList<>();
+        if (allVideos != null && video != null) {
+            // Create a copy of all videos
+            List<VideoItem> availableVideos = new ArrayList<>(allVideos);
+            // Remove the current video
+            availableVideos.removeIf(v -> v.getId().equals(video.getId()));
+            
+            // Shuffle the list
+            Collections.shuffle(availableVideos);
+            
+            // Get up to MAX_RANDOM_VIDEOS videos
+            int count = Math.min(MAX_RANDOM_VIDEOS, availableVideos.size());
+            randomVideos.addAll(availableVideos.subList(0, count));
+        }
+        return randomVideos;
+    }
+
+    private void setupShareButtons() {
+        whatsappShareButton.setOnClickListener(v -> shareVideo("whatsapp"));
+        facebookShareButton.setOnClickListener(v -> shareVideo("facebook"));
+        twitterShareButton.setOnClickListener(v -> shareVideo("twitter"));
+    }
+
+    private void shareVideo(String platform) {
+        String shareText = "Check out this amazing magic trick: " + video.getTitle() + "\n" + APP_LINK;
+        // Implement platform-specific sharing
+        Toast.makeText(requireContext(), "Sharing to " + platform, Toast.LENGTH_SHORT).show();
     }
 
     private void showLoading() {
@@ -212,11 +259,7 @@ public class VideoPlayerFragment extends Fragment implements VideoAdapter.OnVide
     public void onVideoClick(VideoItem video) {
         this.video = video;
         updateVideoInfo();
-        showLoading();
-        youTubePlayerView.getYouTubePlayerWhenReady(player -> {
-            player.loadVideo(video.getId(), 0);
-            hideLoading();
-        });
+        setupVideoPlayer();
     }
 
     @Override

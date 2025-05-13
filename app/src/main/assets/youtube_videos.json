@@ -5,77 +5,88 @@
       "title": "Amazing Card Trick",
       "description": "Learn this incredible card trick that will amaze your friends",
       "thumbnail": "https://img.youtube.com/vi/4zkw5BRju7k/maxresdefault.jpg",
-      "categoryId": 1
+      "categoryId": 5,
+      "uploadDate": "2024-03-20"
     },
     {
       "id": "MIPaVuw2L5E",
       "title": "5 VISUAL Rubber Band Tricks Anyone Can Do | Revealed",
       "description": "Master the art of coin magic with this step-by-step tutorial",
       "thumbnail": "https://img.youtube.com/vi/MIPaVuw2L5E/maxresdefault.jpg",
-      "categoryId": 2
+      "categoryId": 2,
+      "uploadDate": "2024-03-19"
     },
     {
       "id": "HnqofrFENR4",
       "title": "Learn How to Make Money with magic Trick taught by magician Seth Grabel",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/HnqofrFENR4/maxresdefault.jpg",
-      "categoryId": 5
+      "categoryId": 5,
+      "uploadDate": "2024-03-18"
     },
     {
       "id": "NBrv3xCmhlw",
       "title": "7 Greatest Magic Tricks Revealed",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/NBrv3xCmhlw/maxresdefault.jpg",
-      "categoryId": 5
+      "categoryId": 5,
+      "uploadDate": "2024-03-17"
     },
     {
       "id": "FY2Ppumd4xs",
       "title": "Top 5 Magic Tricks with Hands Only that Fools Kobe Bryant | Dynamo Trick Revealed",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/FY2Ppumd4xs/maxresdefault.jpg",
-      "categoryId": 5
+      "categoryId": 5,
+      "uploadDate": "2024-03-16"
     },
     {
       "id": "zkw5BRju7k",
       "title": "2 Easy Rope Magic Tricks Tutorial | Magic Tricks Revealed",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/zkw5BRju7k/maxresdefault.jpg",
-      "categoryId": 3
+      "categoryId": 3,
+      "uploadDate": "2024-03-15"
     },
     {
       "id": "8d9LMuAFoP0",
       "title": "2 EASY MAGIC TRICKS, that you can learn!",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/8d9LMuAFoP0/maxresdefault.jpg",
-      "categoryId": 4
+      "categoryId": 4,
+      "uploadDate": "2024-03-14"
     },
     {
       "id": "9KT562I2_oc",
       "title": "Do Easy Magic Trick with Fish Crackers (Learn the Secret Now!)",
       "description": "Learn how to perform mind reading tricks that will leave your audience speechless",
       "thumbnail": "https://img.youtube.com/vi/9KT562I2_oc/maxresdefault.jpg",
-      "categoryId": 4
+      "categoryId": 4,
+      "uploadDate": "2024-03-13"
     },
     {
       "id": "abc123",
       "title": "Amazing Stage Illusion Revealed",
       "description": "Learn this incredible stage illusion that will wow your audience",
       "thumbnail": "https://img.youtube.com/vi/abc123/maxresdefault.jpg",
-      "categoryId": 6
+      "categoryId": 6,
+      "uploadDate": "2024-03-12"
     },
     {
       "id": "def456",
       "title": "Close-up Magic Masterclass",
       "description": "Master the art of close-up magic with these professional techniques",
       "thumbnail": "https://img.youtube.com/vi/def456/maxresdefault.jpg",
-      "categoryId": 8
+      "categoryId": 8,
+      "uploadDate": "2024-03-11"
     },
     {
       "id": "ghi789",
       "title": "Street Magic Performance Tips",
       "description": "Learn how to perform magic on the streets and engage with your audience",
       "thumbnail": "https://img.youtube.com/vi/ghi789/maxresdefault.jpg",
-      "categoryId": 4
+      "categoryId": 4,
+      "uploadDate": "2024-03-10"
     }
   ]
 } 

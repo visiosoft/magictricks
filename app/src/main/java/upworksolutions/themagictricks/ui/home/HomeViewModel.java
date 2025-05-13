@@ -65,7 +65,11 @@ public class HomeViewModel extends ViewModel {
                     videoObj.getString("title"),
                     videoObj.getString("description"),
                     videoObj.getString("thumbnail"),
-                    videoObj.getInt("categoryId")
+                    "https://www.youtube.com/watch?v=" + videoObj.getString("id"), // videoUrl
+                    videoObj.getInt("categoryId"),
+                    getCategoryName(videoObj.getInt("categoryId")),
+                    0, // views
+                    videoObj.getString("uploadDate")
                 );
                 videoList.add(video);
             }
@@ -86,6 +90,23 @@ public class HomeViewModel extends ViewModel {
         // Load other data from JSON
         loadCategoriesFromJson(context);
         loadTrendingTricksFromJson(context);
+    }
+
+    private String getCategoryName(int categoryId) {
+        switch (categoryId) {
+            case 1:
+                return "Card Magic";
+            case 2:
+                return "Coin Magic";
+            case 3:
+                return "Rope Magic";
+            case 4:
+                return "Mentalism";
+            case 5:
+                return "Street Magic";
+            default:
+                return "Other";
+        }
     }
 
     private void loadCategoriesFromJson(Context context) {

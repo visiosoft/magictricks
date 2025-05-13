@@ -10,9 +10,11 @@ public class Video {
     private String difficulty;
     private int views;
     private int categoryId;
+    private String uploadDate;
 
     public Video(String id, String title, String description, String thumbnailUrl, 
-                String videoUrl, String duration, String difficulty, int views) {
+                String videoUrl, String duration, String difficulty, int views, 
+                int categoryId, String uploadDate) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -21,6 +23,8 @@ public class Video {
         this.duration = duration;
         this.difficulty = difficulty;
         this.views = views;
+        this.categoryId = categoryId;
+        this.uploadDate = uploadDate;
     }
 
     public String getId() {
@@ -93,5 +97,13 @@ public class Video {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(String uploadDate) {
+        this.uploadDate = uploadDate;
     }
 } 
